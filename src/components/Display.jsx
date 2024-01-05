@@ -2,6 +2,7 @@ import { Component } from "react";
 import "../styles/Display.css";
 import Navbar from "./Navbar";
 import LockScreen from "./LockScreen";
+import Menu from "./Menu";
 
 export default class Display extends Component {
   render() {
@@ -13,7 +14,8 @@ export default class Display extends Component {
           style={{ backgroundImage: `url(${wallpaperItems[wallpaper]})` }}
         >
           <Navbar />
-          <LockScreen />
+          {/* <LockScreen /> */}
+          <Menu />
         </div>
       </>
     );
