@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import LockScreen from "./LockScreen";
 import Menu from "./Menu";
 import Games from "./Games";
+import Settings from "./Settings";
 
 export default class Display extends Component {
   render() {
@@ -17,7 +18,8 @@ export default class Display extends Component {
           <Navbar />
           {/* <LockScreen /> */}
           {/* <Menu /> */}
-          <Games />
+          {/* <Games /> */}
+          <Settings />
         </div>
       </>
     );
