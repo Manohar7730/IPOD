@@ -29,7 +29,7 @@ export default class Display extends Component {
         >
           <Navbar />
           {/* <LockScreen /> */}
-          {/* <Menu /> */}
+          <Menu />
           {/* <Games /> */}
           {/* <Settings /> */}
           {/* <Music /> */}
@@ -42,7 +42,7 @@ export default class Display extends Component {
           </div> */}
           {/* <Themes themeItems={themeItems} /> */}
           {/* <Wallpaper wallpaperMenu={wallpaperMenu} /> */}
-          <WheelColor wheelColorMenu={wheelColorMenu} />
+          {/* <WheelColor wheelColorMenu={wheelColorMenu} /> */}
         </div>
       </>
     );
