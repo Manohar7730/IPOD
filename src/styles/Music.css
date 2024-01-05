@@ -1,0 +1,30 @@
+.music {
+  height: 100%;
+}
+
+.music h2 {
+  color: aquamarine;
+  font-size: 40px;
+}
+
+.music-option {
+  padding: 4%;
+  padding-right: 0%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  color: black;
+  cursor: pointer;
+  background-color: burlywood;
+  font-size: 18px;
+}
+
+.active::after {
+  content: ">";
+  padding-right: 20%;
+}
+
+.active {
+  background-color: blue;
+  color: white;
+}

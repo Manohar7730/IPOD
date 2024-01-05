@@ -5,10 +5,22 @@ import LockScreen from "./LockScreen";
 import Menu from "./Menu";
 import Games from "./Games";
 import Settings from "./Settings";
+import Music from "./Music";
+import Songs from "./Songs";
+import Themes from "./Themes";
+import Wallpaper from "./Wallpaper";
+import WheelColor from "./WheelColor";
 
 export default class Display extends Component {
   render() {
-    const { wallpaper, wallpaperItems } = this.props;
+    const {
+      wallpaper,
+      wallpaperItems,
+      songItems,
+      themeItems,
+      wallpaperMenu,
+      wheelColorMenu,
+    } = this.props;
     return (
       <>
         <div
@@ -19,7 +31,18 @@ export default class Display extends Component {
           {/* <LockScreen /> */}
           {/* <Menu /> */}
           {/* <Games /> */}
-          <Settings />
+          {/* <Settings /> */}
+          {/* <Music /> */}
+          {/* <Songs songItems={songItems} /> */}
+          {/* <div className="blank-div">
+            <div className="empty-text">Albums</div>
+          </div> */}
+          {/* <div className="blank-div">
+            <div className="empty-text">Artists</div>
+          </div> */}
+          {/* <Themes themeItems={themeItems} /> */}
+          {/* <Wallpaper wallpaperMenu={wallpaperMenu} /> */}
+          <WheelColor wheelColorMenu={wheelColorMenu} />
         </div>
       </>
     );
