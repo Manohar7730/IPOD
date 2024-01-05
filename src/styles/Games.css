@@ -1,0 +1,11 @@
+.Games {
+  position: relative;
+  width: 270px;
+  height: 190px;
+  overflow-y: hidden;
+  background-image: url("../static/game.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-size: 50px;
+  color: aquamarine;
+}
