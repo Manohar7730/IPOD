@@ -5,9 +5,13 @@ import LockScreen from "./LockScreen";
 
 export default class Display extends Component {
   render() {
+    const { wallpaper, wallpaperItems } = this.props;
     return (
       <>
-        <div className="display">
+        <div
+          className="display"
+          style={{ backgroundImage: `url(${wallpaperItems[wallpaper]})` }}
+        >
           <Navbar />
           <LockScreen />
         </div>

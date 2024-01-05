@@ -5,10 +5,12 @@ import Wheel from "./Wheel";
 
 export default class Case extends Component {
   render() {
+    const { wallpaper, wallpaperItems } = this.props;
+
     return (
       <>
         <div className="case">
-          <Display />
+          <Display wallpaper={wallpaper} wallpaperItems={wallpaperItems} />
           <Wheel />
         </div>
       </>
