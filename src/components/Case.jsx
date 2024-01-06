@@ -7,11 +7,15 @@ export default class Case extends Component {
   render() {
     const {
       wallpaper,
-      wallpaperItems,
-      songItems,
-      themeItems,
-      wallpaperMenu,
-      wheelColorMenu,
+      WallpaperItems,
+      WallpaperMenu,
+      MainMenuItems,
+      MusicItemsMenu,
+      SettingsMenu,
+      SongItemsMenu,
+      ThemeItemsMenu,
+      WheelColorMenu,
+      active,
     } = this.props;
 
     return (
@@ -19,11 +23,15 @@ export default class Case extends Component {
         <div className="case">
           <Display
             wallpaper={wallpaper}
-            wallpaperItems={wallpaperItems}
-            songItems={songItems}
-            themeItems={themeItems}
-            wallpaperMenu={wallpaperMenu}
-            wheelColorMenu={wheelColorMenu}
+            WallpaperItems={WallpaperItems}
+            WallpaperMenu={WallpaperMenu}
+            MainMenuItems={MainMenuItems}
+            MusicItemsMenu={MusicItemsMenu}
+            SettingsMenu={SettingsMenu}
+            SongItemsMenu={SongItemsMenu}
+            ThemeItemsMenu={ThemeItemsMenu}
+            WheelColorMenu={WheelColorMenu}
+            active={active}
           />
           <Wheel />
         </div>

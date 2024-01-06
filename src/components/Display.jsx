@@ -15,34 +15,41 @@ export default class Display extends Component {
   render() {
     const {
       wallpaper,
-      wallpaperItems,
-      songItems,
-      themeItems,
-      wallpaperMenu,
-      wheelColorMenu,
+      WallpaperItems,
+      WallpaperMenu,
+      MainMenuItems,
+      MusicItemsMenu,
+      SettingsMenu,
+      SongItemsMenu,
+      ThemeItemsMenu,
+      WheelColorMenu,
+      active,
     } = this.props;
     return (
       <>
         <div
           className="display"
-          style={{ backgroundImage: `url(${wallpaperItems[wallpaper]})` }}
+          style={{ backgroundImage: `url(${WallpaperItems[wallpaper]})` }}
         >
           <Navbar />
           {/* <LockScreen /> */}
-          <Menu />
+          {/* <Menu MainMenuItems={MainMenuItems} active={active} /> */}
+          {/* <Music MusicItemsMenu={MusicItemsMenu} active={active} /> */}
           {/* <Games /> */}
-          {/* <Settings /> */}
-          {/* <Music /> */}
-          {/* <Songs songItems={songItems} /> */}
+          {/* <Settings SettingsMenu={SettingsMenu} active={active} /> */}
+          {/* <Songs SongItemsMenu={SongItemsMenu} active={active} /> */}
           {/* <div className="blank-div">
             <div className="empty-text">Albums</div>
           </div> */}
           {/* <div className="blank-div">
+            <div className="empty-text">Playing</div>
+          </div> */}
+          {/* <div className="blank-div">
             <div className="empty-text">Artists</div>
           </div> */}
-          {/* <Themes themeItems={themeItems} /> */}
-          {/* <Wallpaper wallpaperMenu={wallpaperMenu} /> */}
-          {/* <WheelColor wheelColorMenu={wheelColorMenu} /> */}
+          <Themes ThemeItemsMenu={ThemeItemsMenu} active={active} />
+          {/* <Wallpaper WallpaperMenu={WallpaperMenu} active={active} /> */}
+          {/* <WheelColor WheelColorMenu={WheelColorMenu} active={active} /> */}
         </div>
       </>
     );
