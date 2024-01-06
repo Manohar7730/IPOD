@@ -16,7 +16,10 @@ export default class Case extends Component {
       ThemeItemsMenu,
       WheelColorMenu,
       active,
+      currentMenu,
+      updateActiveMenu,
     } = this.props;
+    console.log(active);
 
     return (
       <>
@@ -32,8 +35,13 @@ export default class Case extends Component {
             ThemeItemsMenu={ThemeItemsMenu}
             WheelColorMenu={WheelColorMenu}
             active={active}
+            currentMenu={currentMenu}
           />
-          <Wheel />
+          <Wheel
+            updateActiveMenu={updateActiveMenu}
+            currentMenu={currentMenu}
+            active={active}
+          />
         </div>
       </>
     );

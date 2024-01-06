@@ -87,6 +87,38 @@ export default class App extends Component {
       song11Img,
     ],
     active: 0,
+    currentMenu: 0,
+    lengthMenuKey: { 1: 3, 3: 2, 5: 2, 11: 4, 12: 2, 13: 3, 6: 10 },
+  };
+
+  updateActiveMenu = (direction, currentMenu) => {
+    if (
+      currentMenu !== 1 &&
+      currentMenu !== 3 &&
+      currentMenu !== 5 &&
+      currentMenu !== 6 &&
+      currentMenu !== 11 &&
+      currentMenu !== 12 &&
+      currentMenu !== 13
+    ) {
+      return;
+    }
+    let min = 0;
+    let max = 0;
+    max = this.state.lengthMenuKey[currentMenu];
+    if (direction === 1) {
+      if (this.state.active >= max) {
+        this.setState({ active: min });
+      } else {
+        this.setState({ active: this.state.active + 1 });
+      }
+    } else {
+      if (this.state.active <= min) {
+        this.setState({ active: max });
+      } else {
+        this.setState({ active: this.state.active - 1 });
+      }
+    }
   };
 
   render() {
@@ -101,6 +133,7 @@ export default class App extends Component {
       WheelColorMenu,
       SettingsMenu,
       active,
+      currentMenu,
     } = this.state;
     return (
       <>
@@ -116,6 +149,8 @@ export default class App extends Component {
           ThemeItemsMenu={ThemeItemsMenu}
           WheelColorMenu={WheelColorMenu}
           active={active}
+          currentMenu={currentMenu}
+          updateActiveMenu={this.updateActiveMenu}
         />
       </>
     );
