@@ -41,25 +41,31 @@ class Wheel extends Component {
   };
 
   render() {
-    const { changeMenuForward, currentMenu, active } = this.props;
+    const { changeMenuForward, currentMenu, active, wheelColor, color, theme } =
+      this.props;
     return (
       <div className="wheelContainer" id="wheelContainer">
-        <div className="wheel" id="wheel">
-          <div className="control" id="menu">
+        <div
+          style={{ backgroundColor: wheelColor, color: color }}
+          className="wheel"
+          id="wheel"
+        >
+          <div className="control" id="menu" style={{ color: theme }}>
             menu
           </div>
-          <div className="control" id="forward">
+          <div className="control" id="forward" style={{ color: theme }}>
             <BsSkipForwardFill />
           </div>
-          <div className="control" id="backward">
+          <div className="control" id="backward" style={{ color: theme }}>
             <BsSkipBackwardFill />
           </div>
-          <div className="control" id="play-pause">
+          <div className="control" id="play-pause" style={{ color: theme }}>
             <HiPlayPause />
           </div>
         </div>
         <div
           className="blank"
+          style={{ backgroundColor: theme }}
           id="blank"
           onClick={() => changeMenuForward(active, currentMenu)}
         ></div>

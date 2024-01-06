@@ -20,11 +20,14 @@ export default class Case extends Component {
       updateActiveMenu,
       changeMenuForward,
       changeMenuBackward,
+      wheelColor,
+      color,
+      theme,
     } = this.props;
 
     return (
       <>
-        <div className="case">
+        <div className="case" style={{ backgroundColor: theme }}>
           <Display
             wallpaper={wallpaper}
             WallpaperItems={WallpaperItems}
@@ -44,6 +47,9 @@ export default class Case extends Component {
             active={active}
             changeMenuForward={changeMenuForward}
             changeMenuBackward={changeMenuBackward}
+            wheelColor={wheelColor}
+            color={color}
+            theme={theme}
           />
         </div>
       </>

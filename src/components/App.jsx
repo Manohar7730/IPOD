@@ -52,13 +52,7 @@ export default class App extends Component {
       "ticket eh konakunda",
       "Uyyalo uyyala",
     ],
-    ThemeItemsMenu: [
-      "Rose Gold",
-      "Space Gray",
-      "Gold",
-      "Light Purple",
-      "Black",
-    ],
+    ThemeItemsMenu: ["Gold", "Silver", "Bronze", "Amethyst"],
     WheelColorMenu: ["Black", "White", "Brown", "Purple"],
     SongItems: [
       song1,
@@ -88,13 +82,16 @@ export default class App extends Component {
     ],
     active: 0,
     currentMenu: -2,
-    lengthMenuKey: { "-1": 3, 1: 2, 4: 10, 8: 4, 3: 2, 9: 2, 10: 3 },
+    lengthMenuKey: { "-1": 3, 1: 2, 4: 10, 8: 3, 3: 2, 9: 2, 10: 3 },
     menuMapping: {
       "-1": [0, 1, 2, 3],
       1: [4, 5, 6],
       3: [8, 9, 10],
     },
     navigationStack: [],
+    wheelColor: "white",
+    color: "black",
+    theme: "rgb(210, 210, 210);",
   };
 
   updateActiveMenu = (direction, menu) => {
@@ -169,6 +166,21 @@ export default class App extends Component {
       return;
     }
 
+    if (fromMenu === 8) {
+      this.setTheme(id);
+      return;
+    }
+
+    if (fromMenu === 9) {
+      this.setWallpaper(id);
+      return;
+    }
+
+    if (fromMenu === 10) {
+      this.setWheelColor(id);
+      return;
+    }
+
     navigationStack.push(this.state.currentMenu);
 
     const currentMenuID = this.state.menuMapping[fromMenu][id];
@@ -202,6 +214,67 @@ export default class App extends Component {
     });
   };
 
+  setWallpaper = (id) => {
+    this.setState({
+      wallpaper: id,
+    });
+    return;
+  };
+
+  setWheelColor = (id) => {
+    let wheelColor = "";
+    let color = "";
+    if (id === 0) {
+      // Black and gold
+      wheelColor = "black";
+      color = "#FFD700"; // Gold
+    } else if (id === 1) {
+      // White and navy blue
+      wheelColor = "white";
+      color = "#001F3F"; // navy blue
+    } else if (id === 2) {
+      // Brown and bronze
+      wheelColor = "#8B4513"; // Brown
+      color = "#CD7F32"; // Bronze
+    } else if (id === 3) {
+      // Purple and amethyst
+      wheelColor = "#800080"; // Purple
+      color = "#9966CC"; // Amethyst
+    }
+    this.setState({
+      wheelColor: wheelColor,
+      color: color,
+    });
+  };
+
+  setTheme = (id) => {
+    let theme = "";
+    let wheelColor = "";
+    let color = "";
+    if (id === 0) {
+      // Gold
+      theme = "#FFD700";
+      wheelColor = "black";
+      color = "#FFD700"; // Gold
+    } else if (id === 1) {
+      // Silver
+      theme = "#C0C0C0";
+      wheelColor = "white";
+      color = "#C0C0C0"; // Silver
+    } else if (id === 2) {
+      // Bronze
+      theme = "#CD7F32";
+      wheelColor = "#8B4513"; // Brown
+      color = "#CD7F32"; // Bronze
+    } else if (id === 3) {
+      // Amethyst
+      theme = "#9966CC";
+      wheelColor = "#800080"; // Purple
+      color = "#9966CC"; // Amethyst
+    }
+    this.setState({ theme: theme, wheelColor: wheelColor, color: color });
+  };
+
   render() {
     const {
       wallpaper,
@@ -215,6 +288,9 @@ export default class App extends Component {
       SettingsMenu,
       active,
       currentMenu,
+      wheelColor,
+      color,
+      theme,
     } = this.state;
 
     return (
@@ -235,6 +311,9 @@ export default class App extends Component {
           updateActiveMenu={this.updateActiveMenu}
           changeMenuForward={this.changeMenuForward}
           changeMenuBackward={this.changeMenuBackward}
+          wheelColor={wheelColor}
+          color={color}
+          theme={theme}
         />
       </>
     );
