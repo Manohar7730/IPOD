@@ -26,6 +26,7 @@ export default class Display extends Component {
       active,
       currentMenu,
     } = this.props;
+    console.log(currentMenu, active);
     return (
       <>
         <div
@@ -33,42 +34,42 @@ export default class Display extends Component {
           style={{ backgroundImage: `url(${WallpaperItems[wallpaper]})` }}
         >
           <Navbar />
-          {currentMenu == 0 && <LockScreen />}
-          {currentMenu == 1 && (
+          {currentMenu == -2 && <LockScreen />}
+          {currentMenu == -1 && (
             <Menu MainMenuItems={MainMenuItems} active={active} />
           )}
-          {currentMenu == 3 && (
+          {currentMenu == 1 && (
             <Music MusicItemsMenu={MusicItemsMenu} active={active} />
           )}
-          {currentMenu == 4 && <Games />}
-          {currentMenu == 5 && (
+          {currentMenu == 2 && <Games />}
+          {currentMenu == 3 && (
             <Settings SettingsMenu={SettingsMenu} active={active} />
           )}
-          {currentMenu == 6 && (
+          {currentMenu == 4 && (
             <Songs SongItemsMenu={SongItemsMenu} active={active} />
           )}
-          {currentMenu == 8 && (
+          {currentMenu == 5 && (
             <div className="blank-div">
               <div className="empty-text">Artists</div>
             </div>
           )}
-          {currentMenu == 9 && (
+          {currentMenu == 6 && (
             <div className="blank-div">
               <div className="empty-text">Albums</div>
             </div>
           )}
-          {(currentMenu == 10 || currentMenu == 2) && (
+          {(currentMenu == 7 || currentMenu == 0) && (
             <div className="blank-div">
               <div className="empty-text">Playing</div>
             </div>
           )}
-          {currentMenu == 11 && (
+          {currentMenu == 8 && (
             <Themes ThemeItemsMenu={ThemeItemsMenu} active={active} />
           )}
-          {currentMenu == 12 && (
+          {currentMenu == 9 && (
             <Wallpaper WallpaperMenu={WallpaperMenu} active={active} />
           )}
-          {currentMenu == 13 && (
+          {currentMenu == 10 && (
             <WheelColor WheelColorMenu={WheelColorMenu} active={active} />
           )}
         </div>

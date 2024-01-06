@@ -38,7 +38,7 @@ export default class App extends Component {
     wallpaper: 1,
     MainMenuItems: ["Playing", "Music", "Games", "Settings"],
     MusicItemsMenu: ["All Songs", "Artists", "Albums"],
-    SettingsMenu: ["Themes", "WheelColor", "Wallpaper"],
+    SettingsMenu: ["Themes", "Wallpaper", "WheelColor"],
     SongItemsMenu: [
       "Badass",
       "Dum Masala",
@@ -87,25 +87,31 @@ export default class App extends Component {
       song11Img,
     ],
     active: 0,
-    currentMenu: 0,
-    lengthMenuKey: { 1: 3, 3: 2, 5: 2, 11: 4, 12: 2, 13: 3, 6: 10 },
+    currentMenu: -2,
+    lengthMenuKey: { "-1": 3, 1: 2, 4: 10, 8: 4, 3: 2, 9: 2, 10: 3 },
+    menuMapping: {
+      "-1": [0, 1, 2, 3],
+      1: [4, 5, 6],
+      3: [8, 9, 10],
+    },
+    navigationStack: [],
   };
 
-  updateActiveMenu = (direction, currentMenu) => {
+  updateActiveMenu = (direction, menu) => {
     if (
-      currentMenu !== 1 &&
-      currentMenu !== 3 &&
-      currentMenu !== 5 &&
-      currentMenu !== 6 &&
-      currentMenu !== 11 &&
-      currentMenu !== 12 &&
-      currentMenu !== 13
+      menu !== -1 &&
+      menu !== 1 &&
+      menu !== 3 &&
+      menu !== 4 &&
+      menu !== 8 &&
+      menu !== 9 &&
+      menu !== 10
     ) {
       return;
     }
     let min = 0;
     let max = 0;
-    max = this.state.lengthMenuKey[currentMenu];
+    max = this.state.lengthMenuKey[menu];
     if (direction === 1) {
       if (this.state.active >= max) {
         this.setState({ active: min });
@@ -119,6 +125,81 @@ export default class App extends Component {
         this.setState({ active: this.state.active - 1 });
       }
     }
+  };
+
+  changeMenuForward = (id, fromMenu) => {
+    const navigationStack = [...this.state.navigationStack];
+    if (
+      fromMenu !== -2 &&
+      fromMenu !== -1 &&
+      fromMenu !== 1 &&
+      fromMenu !== 4 &&
+      fromMenu !== 3 &&
+      fromMenu !== 8 &&
+      fromMenu !== 9 &&
+      fromMenu !== 0 &&
+      fromMenu !== 7 &&
+      fromMenu !== 10
+    ) {
+      return;
+    }
+
+    if (fromMenu === -2) {
+      navigationStack.push(this.state.currentMenu);
+      this.setState({
+        currentMenu: -1,
+        navigationStack: navigationStack,
+        active: 0,
+      });
+      return;
+    }
+
+    if (fromMenu === -1) {
+      navigationStack.push(this.state.currentMenu);
+      this.setState({
+        currentMenu: id,
+        navigationStack: navigationStack,
+        active: 0,
+      });
+      return;
+    }
+
+    if (fromMenu === 4) {
+      this.changePlayingSongFromMusicMenu(id, navigationStack, fromMenu);
+      return;
+    }
+
+    navigationStack.push(this.state.currentMenu);
+
+    const currentMenuID = this.state.menuMapping[fromMenu][id];
+    this.setState({
+      currentMenu: currentMenuID,
+      navigationStack: navigationStack,
+      active: 0,
+    });
+  };
+
+  changeMenuBackward = () => {
+    const navigationStack = [...this.state.navigationStack];
+    if (this.state.currentMenu === -2) {
+      console.log("Can't navigate backward");
+      return;
+    } else {
+      const prevId = navigationStack.pop();
+      this.setState({
+        currentMenu: prevId,
+        navigationStack: navigationStack,
+        active: 0,
+      });
+    }
+  };
+
+  changePlayingSongFromMusicMenu = (id, navigationStack) => {
+    this.setState({
+      currentMenu: 7 || 0,
+      navigationStack: navigationStack,
+      active: 0,
+    });
   };
 
   render() {
@@ -135,6 +216,7 @@ export default class App extends Component {
       active,
       currentMenu,
     } = this.state;
+
     return (
       <>
         <Knowmore />
@@ -151,6 +233,8 @@ export default class App extends Component {
           active={active}
           currentMenu={currentMenu}
           updateActiveMenu={this.updateActiveMenu}
+          changeMenuForward={this.changeMenuForward}
+          changeMenuBackward={this.changeMenuBackward}
         />
       </>
     );

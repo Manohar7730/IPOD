@@ -18,8 +18,9 @@ export default class Case extends Component {
       active,
       currentMenu,
       updateActiveMenu,
+      changeMenuForward,
+      changeMenuBackward,
     } = this.props;
-    console.log(active);
 
     return (
       <>
@@ -41,6 +42,8 @@ export default class Case extends Component {
             updateActiveMenu={updateActiveMenu}
             currentMenu={currentMenu}
             active={active}
+            changeMenuForward={changeMenuForward}
+            changeMenuBackward={changeMenuBackward}
           />
         </div>
       </>

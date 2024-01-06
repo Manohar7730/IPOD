@@ -8,11 +8,16 @@ class Wheel extends Component {
   state = { angle: 0 };
 
   componentDidMount() {
+    const { changeMenuBackward } = this.props;
     const wheel = document.getElementById("wheel");
+    const menu = document.getElementById("menu");
 
     const region = new ZingTouch.Region(wheel);
 
     region.bind(wheel, "rotate", this.wheelControl);
+    region.bind(menu, "tap", (e) => {
+      changeMenuBackward(e);
+    });
   }
 
   wheelControl = (event) => {
@@ -36,6 +41,7 @@ class Wheel extends Component {
   };
 
   render() {
+    const { changeMenuForward, currentMenu, active } = this.props;
     return (
       <div className="wheelContainer" id="wheelContainer">
         <div className="wheel" id="wheel">
@@ -52,7 +58,11 @@ class Wheel extends Component {
             <HiPlayPause />
           </div>
         </div>
-        <div className="blank" id="blank"></div>
+        <div
+          className="blank"
+          id="blank"
+          onClick={() => changeMenuForward(active, currentMenu)}
+        ></div>
       </div>
     );
   }
