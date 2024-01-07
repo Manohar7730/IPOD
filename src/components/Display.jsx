@@ -12,6 +12,11 @@ import Wallpaper from "./Wallpaper";
 import WheelColor from "./WheelColor";
 import Playing from "./Playing";
 
+// On the basis of what the current menu is this item will render only that component
+// Also this displays the navigation bar
+// Key for displaying menu
+// {-2: lock screen, -1 : main menu, 0 : now playing, 1: music menu, 2,5,6 : dummy menu, 3: settings menu,4:songs menu, 7:music playing, 8 :themes menu, 9:wheel color menu, 10:wallpaper menu}
+
 export default class Display extends Component {
   render() {
     const {
@@ -31,7 +36,6 @@ export default class Display extends Component {
       audio,
       playing,
     } = this.props;
-    console.log(currentMenu, active);
     return (
       <>
         <div

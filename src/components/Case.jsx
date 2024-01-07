@@ -3,6 +3,7 @@ import "../styles/Case.css";
 import Display from "./Display";
 import Wheel from "./Wheel";
 
+// This component is the outer case of iPod it does nothing special just renders display and wheel component
 export default class Case extends Component {
   render() {
     const {

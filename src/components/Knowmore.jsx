@@ -31,10 +31,32 @@ export default class Knowmore extends Component {
             <h3>controls</h3>
             <ol>
               <li>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Voluptate delectus, itaque, asperiores eos fugit excepturi
-                eligendi, nulla incidunt rem saepe distinctio impedit dicta!
-                Amet id, excepturi neque saepe accusantium corrupti?
+                To unlock screen you have to press center button and to lock
+                screen you have to press menu button in main menu.
+              </li>
+              <li>
+                To play and pause music in any menu you need to press play/pause
+                button on bottom.
+              </li>
+              <li>
+                Short pressing on forward/reverse will take you to next/previous
+                track (ONLY WHILE PLAYING)
+              </li>
+              <li>
+                Long pressing on forward/reverse will seek the song in
+                forward/reverse (ONLY WHILE PLAYING)
+              </li>
+              <li>
+                To navigate between a menu items you need to rotate on track
+                wheel
+              </li>
+              <li>
+                To go to next menu or go inside a menu press center button and
+                to go to previous menu press menu button
+              </li>
+              <li>
+                Please checkout settings menu to change
+                theme,wheelColor,wallpaper
               </li>
               <li>
                 Github-Link : <a href="">ipod</a>

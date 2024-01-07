@@ -3,6 +3,7 @@ import "../styles/App.css";
 import Case from "./Case";
 import Knowmore from "./Knowmore";
 
+// Importing static assets
 import wallpaper1 from "../static/wallpapers/lake-boating.jpg";
 import wallpaper2 from "../static/wallpapers/lonely-tree.jpg";
 import wallpaper3 from "../static/wallpapers/maldives-sea.jpg";
@@ -32,12 +33,16 @@ import song10Img from "../static/songImgs/ticket eh konakunda.jpeg";
 import song11Img from "../static/songImgs/Uyyalo uyyala.jpeg";
 
 export default class App extends Component {
+  // Initial state of the application
   state = {
-    WallpaperItems: [wallpaper1, wallpaper2, wallpaper3],
+    // Wallpaper data
+    WallpaperItems: [wallpaper1, wallpaper2, wallpaper3], //wallpapers
     WallpaperMenu: ["Lake Boating", "Lonely Tree", "Maldives Sea"],
-    wallpaper: 1,
-    MainMenuItems: ["Playing", "Music", "Games", "Settings"],
-    MusicItemsMenu: ["All Songs", "Artists", "Albums"],
+    wallpaper: 0, //current wallpaper
+
+    // Menu items
+    MainMenuItems: ["Playing", "Music", "Games", "Settings"], //main menu Items
+    MusicItemsMenu: ["All Songs", "Artists", "Albums"], //music items menu
     SettingsMenu: ["Themes", "Wallpaper", "WheelColor"],
     SongItemsMenu: [
       "Badass",
@@ -51,9 +56,11 @@ export default class App extends Component {
       "Samayama",
       "ticket eh konakunda",
       "Uyyalo uyyala",
-    ],
+    ], //song items menu
     ThemeItemsMenu: ["Gold", "Silver", "Bronze", "Amethyst"],
     WheelColorMenu: ["Black", "White", "Brown", "Purple"],
+
+    // Song data
     SongItems: [
       song1,
       song2,
@@ -66,7 +73,7 @@ export default class App extends Component {
       song9,
       song10,
       song11,
-    ],
+    ], //songs list
     SongImgItems: [
       song1Img,
       song2Img,
@@ -79,25 +86,32 @@ export default class App extends Component {
       song9Img,
       song10Img,
       song11Img,
-    ],
-    active: 0,
-    currentMenu: -2,
-    lengthMenuKey: { "-1": 3, 1: 2, 4: 10, 8: 3, 3: 2, 9: 2, 10: 3 },
+    ], //song images list
+
+    // UI and navigation state
+    active: 0, //Active list item
+    currentMenu: -2, //current menu which is lockScreen initially
+    lengthMenuKey: { "-1": 3, 1: 2, 4: 10, 8: 3, 3: 2, 9: 2, 10: 3 }, //length of a particular menu
     menuMapping: {
       "-1": [0, 1, 2, 3],
       1: [4, 5, 6],
       3: [8, 9, 10],
-    },
-    navigationStack: [],
-    wheelColor: "white",
+    }, //which menu can be rendered by key menu
+    navigationStack: [], //Used for navigation forward and backward
+
+    // Theme and color settings
+    wheelColor: "white", //current wheel color
     color: "black",
-    theme: "rgb(210, 210, 210)",
-    songIndex: 0,
-    songImgUrl: song1Img,
-    audio: new Audio(song1),
-    playing: false,
+    theme: "rgb(210, 210, 210)", //current body theme
+
+    // Audio state
+    songIndex: 0, //current song
+    songImgUrl: song1Img, //current song img for now playing
+    audio: new Audio(song1), //current audio file
+    playing: false, //playing or not
   };
 
+  // Method to update the active menu item while rotating on the track-wheel
   updateActiveMenu = (direction, menu) => {
     if (
       menu !== -1 &&
@@ -128,6 +142,7 @@ export default class App extends Component {
     }
   };
 
+  // Method to change menu forward by PRESSING the CENTER BUTTON using NAVIGATION STACK
   changeMenuForward = (id, fromMenu) => {
     const navigationStack = [...this.state.navigationStack];
     if (
@@ -200,6 +215,7 @@ export default class App extends Component {
     });
   };
 
+  // Method to change menu backward by PRESSING the MENU BUTTON
   changeMenuBackward = () => {
     const navigationStack = [...this.state.navigationStack];
     if (this.state.currentMenu === -2) {
@@ -215,6 +231,7 @@ export default class App extends Component {
     }
   };
 
+  // Method to change playing song from music menu
   changePlayingSongFromMusicMenu = (id, navigationStack) => {
     const songUrl = this.state.SongItems[id];
     const songImgUrl = this.state.SongImgItems[id];
@@ -235,6 +252,7 @@ export default class App extends Component {
     );
   };
 
+  // Method to set wallpaper
   setWallpaper = (id) => {
     this.setState({
       wallpaper: id,
@@ -242,6 +260,7 @@ export default class App extends Component {
     return;
   };
 
+  // Method to set wheel color
   setWheelColor = (id) => {
     let wheelColor = "";
     let color = "";
@@ -268,6 +287,7 @@ export default class App extends Component {
     });
   };
 
+  // Method to set theme
   setTheme = (id) => {
     let theme = "";
     let wheelColor = "";
@@ -296,6 +316,7 @@ export default class App extends Component {
     this.setState({ theme: theme, wheelColor: wheelColor, color: color });
   };
 
+  // Method to seek song forward
   seekSongForward = (e) => {
     if (!this.state.playing) {
       return;
@@ -308,6 +329,7 @@ export default class App extends Component {
     });
   };
 
+  // Method to seek song reverse
   seekSongReverse = (e) => {
     if (!this.state.playing) {
       return;
@@ -320,6 +342,7 @@ export default class App extends Component {
     });
   };
 
+  // Method to toggle play/pause
   togglePlayPause = () => {
     if (this.state.playing) {
       this.setState({ playing: false });
@@ -331,6 +354,7 @@ export default class App extends Component {
   };
 
   render() {
+    // Destructuring state variables for easier access
     const {
       wallpaper,
       WallpaperItems,
@@ -352,6 +376,7 @@ export default class App extends Component {
       playing,
     } = this.state;
 
+    // Rendering Knowmore and Case components
     return (
       <>
         <Knowmore />
