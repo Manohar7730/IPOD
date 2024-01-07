@@ -10,6 +10,7 @@ import Songs from "./Songs";
 import Themes from "./Themes";
 import Wallpaper from "./Wallpaper";
 import WheelColor from "./WheelColor";
+import Playing from "./Playing";
 
 export default class Display extends Component {
   render() {
@@ -25,6 +26,10 @@ export default class Display extends Component {
       WheelColorMenu,
       active,
       currentMenu,
+      songIndex,
+      songImgUrl,
+      audio,
+      playing,
     } = this.props;
     console.log(currentMenu, active);
     return (
@@ -59,9 +64,13 @@ export default class Display extends Component {
             </div>
           )}
           {(currentMenu == 7 || currentMenu == 0) && (
-            <div className="blank-div">
-              <div className="empty-text">Playing</div>
-            </div>
+            <Playing
+              songImgUrl={songImgUrl}
+              audio={audio}
+              playing={playing}
+              songIndex={songIndex}
+              SongItemsMenu={SongItemsMenu}
+            />
           )}
           {currentMenu == 8 && (
             <Themes ThemeItemsMenu={ThemeItemsMenu} active={active} />

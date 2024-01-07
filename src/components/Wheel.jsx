@@ -8,15 +8,37 @@ class Wheel extends Component {
   state = { angle: 0 };
 
   componentDidMount() {
-    const { changeMenuBackward } = this.props;
+    const {
+      changeMenuBackward,
+      togglePlayPause,
+      seekSongForward,
+      seekSongReverse,
+    } = this.props;
     const wheel = document.getElementById("wheel");
     const menu = document.getElementById("menu");
+    const playPause = document.getElementById("play-pause");
+    const forward = document.getElementById("forward");
+    const backward = document.getElementById("backward");
 
     const region = new ZingTouch.Region(wheel);
 
     region.bind(wheel, "rotate", this.wheelControl);
     region.bind(menu, "tap", (e) => {
       changeMenuBackward(e);
+    });
+    const longTapGesture = new ZingTouch.Tap({
+      maxDelay: 10000,
+      numInputs: 1,
+      tolerance: 1,
+    });
+    region.bind(playPause, "tap", (e) => {
+      togglePlayPause(e);
+    });
+    region.bind(backward, longTapGesture, (e) => {
+      seekSongReverse(e);
+    });
+    region.bind(forward, longTapGesture, (e) => {
+      seekSongForward(e);
     });
   }
 
@@ -50,16 +72,16 @@ class Wheel extends Component {
           className="wheel"
           id="wheel"
         >
-          <div className="control" id="menu" style={{ color: theme }}>
+          <div className="control" id="menu" style={{ color: color }}>
             menu
           </div>
-          <div className="control" id="forward" style={{ color: theme }}>
+          <div className="control" id="forward" style={{ color: color }}>
             <BsSkipForwardFill />
           </div>
-          <div className="control" id="backward" style={{ color: theme }}>
+          <div className="control" id="backward" style={{ color: color }}>
             <BsSkipBackwardFill />
           </div>
-          <div className="control" id="play-pause" style={{ color: theme }}>
+          <div className="control" id="play-pause" style={{ color: color }}>
             <HiPlayPause />
           </div>
         </div>

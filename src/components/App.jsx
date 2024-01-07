@@ -91,7 +91,11 @@ export default class App extends Component {
     navigationStack: [],
     wheelColor: "white",
     color: "black",
-    theme: "rgb(210, 210, 210);",
+    theme: "rgb(210, 210, 210)",
+    songIndex: 0,
+    songImgUrl: song1Img,
+    audio: new Audio(song1),
+    playing: false,
   };
 
   updateActiveMenu = (direction, menu) => {
@@ -181,6 +185,11 @@ export default class App extends Component {
       return;
     }
 
+    if (fromMenu === 7 || fromMenu === 0) {
+      this.togglePlayPause();
+      return;
+    }
+
     navigationStack.push(this.state.currentMenu);
 
     const currentMenuID = this.state.menuMapping[fromMenu][id];
@@ -207,11 +216,23 @@ export default class App extends Component {
   };
 
   changePlayingSongFromMusicMenu = (id, navigationStack) => {
-    this.setState({
-      currentMenu: 7 || 0,
-      navigationStack: navigationStack,
-      active: 0,
-    });
+    const songUrl = this.state.SongItems[id];
+    const songImgUrl = this.state.SongImgItems[id];
+    this.state.audio.pause();
+    this.setState(
+      {
+        currentMenu: 0,
+        navigationStack: navigationStack,
+        active: 0,
+        playing: true,
+        songIndex: id,
+        audio: new Audio(songUrl),
+        songImgUrl: songImgUrl,
+      },
+      () => {
+        this.state.audio.play();
+      }
+    );
   };
 
   setWallpaper = (id) => {
@@ -260,7 +281,7 @@ export default class App extends Component {
       // Silver
       theme = "#C0C0C0";
       wheelColor = "white";
-      color = "#C0C0C0"; // Silver
+      color = "#001F3F"; // navy Blue
     } else if (id === 2) {
       // Bronze
       theme = "#CD7F32";
@@ -273,6 +294,40 @@ export default class App extends Component {
       color = "#9966CC"; // Amethyst
     }
     this.setState({ theme: theme, wheelColor: wheelColor, color: color });
+  };
+
+  seekSongForward = (e) => {
+    if (!this.state.playing) {
+      return;
+    }
+
+    const interval = e.detail.interval / 100;
+    this.setState((prevState) => {
+      prevState.audio.currentTime += interval;
+      return prevState;
+    });
+  };
+
+  seekSongReverse = (e) => {
+    if (!this.state.playing) {
+      return;
+    }
+
+    const interval = e.detail.interval / 100;
+    this.setState((prevState) => {
+      prevState.audio.currentTime -= interval;
+      return prevState;
+    });
+  };
+
+  togglePlayPause = () => {
+    if (this.state.playing) {
+      this.setState({ playing: false });
+      this.state.audio.pause();
+    } else {
+      this.setState({ playing: true });
+      this.state.audio.play();
+    }
   };
 
   render() {
@@ -291,6 +346,10 @@ export default class App extends Component {
       wheelColor,
       color,
       theme,
+      songIndex,
+      songImgUrl,
+      audio,
+      playing,
     } = this.state;
 
     return (
@@ -314,6 +373,13 @@ export default class App extends Component {
           wheelColor={wheelColor}
           color={color}
           theme={theme}
+          songIndex={songIndex}
+          playing={playing}
+          audio={audio}
+          songImgUrl={songImgUrl}
+          togglePlayPause={this.togglePlayPause}
+          seekSongForward={this.seekSongForward}
+          seekSongReverse={this.seekSongReverse}
         />
       </>
     );

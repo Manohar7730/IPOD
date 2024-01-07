@@ -23,6 +23,13 @@ export default class Case extends Component {
       wheelColor,
       color,
       theme,
+      songIndex,
+      songImgUrl,
+      audio,
+      playing,
+      togglePlayPause,
+      seekSongForward,
+      seekSongReverse,
     } = this.props;
 
     return (
@@ -40,6 +47,10 @@ export default class Case extends Component {
             WheelColorMenu={WheelColorMenu}
             active={active}
             currentMenu={currentMenu}
+            songIndex={songIndex}
+            playing={playing}
+            audio={audio}
+            songImgUrl={songImgUrl}
           />
           <Wheel
             updateActiveMenu={updateActiveMenu}
@@ -50,6 +61,9 @@ export default class Case extends Component {
             wheelColor={wheelColor}
             color={color}
             theme={theme}
+            togglePlayPause={togglePlayPause}
+            seekSongForward={seekSongForward}
+            seekSongReverse={seekSongReverse}
           />
         </div>
       </>
