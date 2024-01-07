@@ -59,13 +59,16 @@ export default class Knowmore extends Component {
                 theme,wheelColor,wallpaper
               </li>
               <li>
-                Github-Link : <a href="">ipod</a>
+                Github-Link :{" "}
+                <a href="https://github.com/Manohar7730/IPOD">ipod</a>
               </li>
               <li>
-                Hosting-Link : <a href="">ipod-hoisted</a>
+                Hosting-Link :{" "}
+                <a href="https://manohar7730.github.io/IPOD/">ipod-hoisted</a>
               </li>
               <li>
-                App Developed by : <a href="">manohar</a>
+                App Developed by :{" "}
+                <a href="https://github.com/Manohar7730">manohar</a>
               </li>
             </ol>
           </div>
