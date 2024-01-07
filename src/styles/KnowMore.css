@@ -18,15 +18,15 @@
 
 .details-container {
   position: absolute;
-  width: 350px;
+  width: 400px;
   height: auto;
   background-color: #357ab7;
   padding: 5px;
-  padding-left: 30px;
+  padding-left: 40px;
   color: white;
   pointer-events: none;
-  scale: 0.8;
-  transform: translate(100%, -10%);
+  scale: 0.7;
+  transform: translate(90%, -20%);
   transition: opacity 0.3s, transform 0.3s;
   border-radius: 15px;
   z-index: 1;
@@ -45,13 +45,13 @@
   transition: background-color 0.3s;
 }
 .details-container h3 {
-  font-size: 28px;
+  font-size: 30px;
   margin-bottom: 10px;
   text-transform: capitalize;
 }
 
 .details-container ol li {
-  font-size: 18px;
+  font-size: 19px;
   margin-bottom: 8px;
 }
 
